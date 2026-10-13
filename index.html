@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Evening Aisha Amour ❤️</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #070910;
+    font-family: Georgia, "Times New Roman", serif;
+    color: white;
+}
+
+#scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 45%, rgba(75, 68, 82, 0.16), transparent 45%),
+        linear-gradient(120deg, #070910, #0b0e18 45%, #090b13);
+    transition: background 1.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LIGHT ON */
+#scene.is-on {
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(255, 178, 102, 0.32), transparent 45%),
+        radial-gradient(ellipse at 50% 50%, rgba(180, 104, 58, 0.20), transparent 70%),
+        linear-gradient(120deg, #30251f, #17151a 60%, #0c0d13);
+}
+
+/* =====================================================
+   CENTER MESSAGE CONTAINER
+===================================================== */
+
+.love-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 85%;
+    max-width: 750px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+#scene.is-on .love-container {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* SIDE LINES */
+.side-line {
+    width: 3px;
+    height: 160px;
+    flex-shrink: 0;
+    background: linear-gradient(to bottom, transparent, white 15%, white 85%, transparent);
+    transform: scaleY(0);
+    transition: transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+#scene.is-on .side-line {
+    transform: scaleY(1);
+}
+
+/* MESSAGE CONTENT */
+.message-box {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.greeting {
+    font-size: 1.1em;
+    letter-spacing: 3px;
+    color: #ffb763;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.main-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    font-weight: 300;
+    color: #fceee3;
+    letter-spacing: 1px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    text-shadow: 0 0 10px rgba(255,145,60,.2);
+}
+
+.name {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #ffad62;
+    letter-spacing: 3px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+/* HEART */
+.heart {
+    display: inline-block;
+    margin-left: 8px;
+    color: #f05a96;
+    font-size: 1em;
+    opacity: 0;
+    transform: scale(0);
+    text-shadow: 0 0 8px #ff5a99, 0 0 25px rgba(255,60,130,.8);
+    transition: opacity .5s ease, transform .5s cubic-bezier(.2,1.5,.4,1);
+}
+
+.heart.show {
+    opacity: 1;
+    transform: scale(1);
+    animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.17); }
+}
+
+/* =====================================================
+   INTERACTIVE TOUCH BUTTON (Replaces Pull Cord)
+===================================================== */
+
+.tap-button-container {
+    position: absolute;
+    bottom: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+#scene.is-on .tap-button-container {
+    opacity: 0.3; /* Fades out slightly once lit up so it doesn't distract */
+}
+
+.tap-circle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff3d3, #ffc675 55%, #e89440);
+    box-shadow: 0 0 15px rgba(255,167,75,0.6), 0 4px 10px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    animation: pulseGlow 2s infinite;
+    transition: transform 0.2s ease;
+}
+
+.tap-circle:active {
+    transform: scale(0.92);
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(255,167,75,0.6), 0 4px 10px rgba(0,0,0,0.4); }
+    50% { box-shadow: 0 0 25px rgba(255,190,100,0.9), 0 4px 15px rgba(0,0,0,0.4); }
+}
+
+.tap-hint {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+}
+
+/* PARTICLES */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ffd7a5;
+    box-shadow: 0 0 8px #ffbc70;
+    pointer-events: none;
+    animation: particleFloat 2.5s ease-out forwards;
+}
+
+@keyframes particleFloat {
+    0% { opacity: 0; transform: translate(0,0) scale(0); }
+    20% { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(.2); }
+}
+
+/* BOTTOM TEXT */
+.bottom-text {
+    position: absolute;
+    bottom: 5%;
+    color: rgba(255,255,255,.35);
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 600px) {
+    .love-container {
+        width: 90%;
+        gap: 15px;
+    }
+    .side-line {
+        height: 130px;
+    }
+    .greeting {
+        font-size: 0.9em;
+    }
+    .main-text {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="scene">
+
+    <!-- MESSAGE -->
+    <div class="love-container">
+        <div class="side-line"></div>
+        <div class="message-box">
+            <div class="greeting">Good Evening, My Love</div>
+            <div class="main-text">
+                "As the day winds down, I just want you to remember how incredible you are. Whatever is on your mind, you're never alone—take a deep breath, relax, and know that you are deeply cherished, always."
+            </div>
+            <div class="name">
+                AISHA AMOUR
+                <span class="heart" id="heart">♥</span>
+            </div>
+        </div>
+        <div class="side-line"></div>
+    </div>
+
+    <!-- TOUCH BUTTON -->
+    <div class="tap-button-container" id="toggleButton">
+        <div class="tap-circle">✨</div>
+        <div class="tap-hint" id="hintText">Tap to Light Up</div>
+    </div>
+
+    <!-- PARTICLES -->
+    <div id="particles"></div>
+
+    <!-- BOTTOM -->
+    <div class="bottom-text">
+        made with love
+    </div>
+
+</div>
+
+<script>
+const scene = document.getElementById("scene");
+const toggleButton = document.getElementById("toggleButton");
+const heart = document.getElementById("heart");
+const particles = document.getElementById("particles");
+const hintText = document.getElementById("hintText");
+
+let isOn = false;
+
+function toggleLight() {
+    isOn = !isOn;
+
+    if (isOn) {
+        scene.classList.add("is-on");
+        hintText.textContent = "Tap to Dim";
+        setTimeout(() => {
+            heart.classList.add("show");
+            createParticles();
+        }, 600);
+    } else {
+        scene.classList.remove("is-on");
+        hintText.textContent = "Tap to Light Up";
+        heart.classList.remove("show");
+    }
+}
+
+toggleButton.addEventListener("click", toggleLight);
+toggleButton.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    toggleLight();
+});
+
+function createParticles() {
+    for (let i = 0; i < 25; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        particle.style.left = (45 + Math.random() * 20) + "%";
+        particle.style.top = (50 + Math.random() * 20) + "%";
+        
+        particle.style.setProperty("--x", (Math.random() * 260 - 130) + "px");
+        particle.style.setProperty("--y", (Math.random() * -180 - 20) + "px");
+        particle.style.animationDelay = (Math.random() * .8) + "s";
+        
+        particles.appendChild(particle);
+        setTimeout(() => particle.remove(), 3500);
+    }
+}
+</script>
+
+</body>
+</html>
